@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "social-media": {
+      "command": "node",
+      "args": ["./dist/index.js"],
+      "cwd": "./social-media-mcp-server",
+      "env": {
+        "BUSINESS_NAME": "Your Massage Therapy Business",
+        "BUSINESS_TYPE": "massage_therapy",
+        "BUSINESS_DESCRIPTION": "Professional massage therapy services for relaxation and wellness",
+        "BUSINESS_LOCATION": "Your City, State",
+        "BUSINESS_PHONE": "+1-555-123-4567",
+        "BUSINESS_EMAIL": "contact@yourbusiness.com",
+        "BUSINESS_WEBSITE": "https://yourbusiness.com",
+        "INSTAGRAM_HANDLE": "@yourbusiness",
+        "FACEBOOK_PAGE": "YourBusinessPage",
+        "CANVA_CLIENT_ID": "your_canva_client_id",
+        "CANVA_CLIENT_SECRET": "your_canva_client_secret",
+        "CANVA_REDIRECT_URI": "https://your-domain.com/callback"
+      }
+    }
+  }
+}

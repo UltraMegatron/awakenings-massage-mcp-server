@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "name": "awakenings-canva-sync",
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/privacy-policy",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/support", 
+      "dest": "/server.js"
+    },
+    {
+      "src": "/canva-callback",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/server.js"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}

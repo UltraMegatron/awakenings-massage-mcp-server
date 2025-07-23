@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canva Sync - Awakenings Massage Company</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            margin-top: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .sync-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 4px solid #667eea;
+        }
+        
+        .sync-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .status.connected {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status.disconnected {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: #5a6fd8;
+        }
+        
+        .btn.secondary {
+            background: #6c757d;
+        }
+        
+        .btn.secondary:hover {
+            background: #5a6268;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .auth-info {
+            background: #e9ecef;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .callback-url {
+            background: #f1f3f4;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: monospace;
+            word-break: break-all;
+            margin: 1rem 0;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+            color: #666;
+        }
+        
+        .business-info {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .business-info h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🎨 Canva Sync</div>
+            <div class="subtitle">Professional Social Media Content Creation</div>
+        </div>
+        
+        <div class="business-info">
+            <h3>🏢 Awakenings Massage Company</h3>
+            <p><strong>📍 Address:</strong> 2402 North Nevada Avenue, Colorado Springs, CO</p>
+            <p><strong>🌐 Website:</strong> <a href="https://awakeningsmassagecos.com" target="_blank">awakeningsmassagecos.com</a></p>
+            <p><strong>💼 Service:</strong> Professional Massage Therapy & Wellness</p>
+        </div>
+        
+        <div class="sync-section">
+            <h2 class="sync-title">
+                🔗 Canva Integration Status
+            </h2>
+            
+            <div class="status disconnected" id="connectionStatus">
+                ❌ Not Connected to Canva
+            </div>
+            
+            <div class="auth-info">
+                <h4>🔐 OAuth Configuration</h4>
+                <p><strong>Redirect URI for Canva App:</strong></p>
+                <div class="callback-url" id="callbackUrl">
+                    https://your-domain.com/canva-callback
+                </div>
+                <p><em>Use this URL in your Canva Developer App settings</em></p>
+            </div>
+            
+            <div style="text-align: center; margin: 2rem 0;">
+                <button class="btn" onclick="connectToCanva()" id="connectBtn">
+                    🎨 Connect to Canva
+                </button>
+                <button class="btn secondary" onclick="disconnectCanva()" id="disconnectBtn" style="display: none;">
+                    ❌ Disconnect
+                </button>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Automated Design Creation</h3>
+                <p>Generate professional social media designs automatically for your massage therapy content.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <h3>Platform Optimization</h3>
+                <p>Create designs optimized for Instagram posts, Facebook covers, and Instagram stories.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🏔️</div>
+                <h3>Colorado Springs Branding</h3>
+                <p>Designs that reflect your elegant, professional brand and Colorado location.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">💆‍♀️</div>
+                <h3>Therapeutic Focus</h3>
+                <p>Professional designs that emphasize health, wellness, and therapeutic benefits.</p>
+            </div>
+        </div>
+        
+        <div class="sync-section">
+            <h3>📋 Integration Benefits</h3>
+            <ul style="padding-left: 2rem; margin: 1rem 0;">
+                <li>🎨 <strong>Professional Design Creation:</strong> Generate branded visuals for every post</li>
+                <li>📐 <strong>Perfect Sizing:</strong> Automatic sizing for Instagram, Facebook, and Stories</li>
+                <li>🏥 <strong>Healthcare Aesthetic:</strong> Professional, therapeutic design templates</li>
+                <li>⚡ <strong>Time Saving:</strong> Create designs instantly with your content</li>
+                <li>🎯 <strong>Brand Consistency:</strong> Maintain elegant, professional appearance</li>
+                <li>📊 <strong>Export Options:</strong> PNG, JPG, and PDF formats available</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2025 Awakenings Massage Company | Colorado Springs, CO</p>
+            <p>Professional Massage Therapy & Wellness Services</p>
+        </div>
+    </div>
+    
+    <script>
+        // Get current domain for callback URL
+        const currentDomain = window.location.origin;
+        document.getElementById('callbackUrl').textContent = currentDomain + '/canva-callback';
+        
+        function connectToCanva() {
+            // This would typically redirect to Canva OAuth
+            alert('🎨 Redirecting to Canva for authorization...\n\nIn a real implementation, this would redirect to:\nhttps://www.canva.com/api/oauth/authorize');
+            
+            // Simulate connection for demo
+            setTimeout(() => {
+                document.getElementById('connectionStatus').className = 'status connected';
+                document.getElementById('connectionStatus').innerHTML = '✅ Connected to Canva';
+                document.getElementById('connectBtn').style.display = 'none';
+                document.getElementById('disconnectBtn').style.display = 'inline-block';
+            }, 2000);
+        }
+        
+        function disconnectCanva() {
+            document.getElementById('connectionStatus').className = 'status disconnected';
+            document.getElementById('connectionStatus').innerHTML = '❌ Not Connected to Canva';
+            document.getElementById('connectBtn').style.display = 'inline-block';
+            document.getElementById('disconnectBtn').style.display = 'none';
+        }
+        
+        // Check URL parameters for OAuth callback
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        const error = urlParams.get('error');
+        
+        if (code) {
+            // Handle successful OAuth callback
+            document.getElementById('connectionStatus').className = 'status connected';
+            document.getElementById('connectionStatus').innerHTML = '✅ Successfully Connected to Canva!';
+            document.getElementById('connectBtn').style.display = 'none';
+            document.getElementById('disconnectBtn').style.display = 'inline-block';
+        } else if (error) {
+            // Handle OAuth error
+            document.getElementById('connectionStatus').innerHTML = '❌ Connection Failed: ' + error;
+        }
+    </script>
+</body>
+</html>
