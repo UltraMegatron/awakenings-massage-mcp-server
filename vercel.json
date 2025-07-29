@@ -12,12 +12,26 @@
       "dest": "/index.html"
     },
     {
+      "src": "/privacy-policy",
+      "dest": "/privacy-policy.html"
+    },
+    {
+      "src": "/support",
+      "dest": "/support.html"
+    },
+    {
       "src": "/api/canva/auth",
       "dest": "/api/index.js"
     },
     {
       "src": "/api/canva-callback",
       "dest": "/api/canva-callback.js"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
